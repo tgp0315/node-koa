@@ -1,19 +1,47 @@
 {
-  "name": "node",
+  "name": "node-koa",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin": {
-    "node": "www.js"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bin/www.js"
+    "start": "concurrently \"npm run build:dev\" \"npm run server:dev\"",
+    "dev": "npm start",
+    "product": "npm run build:pro && npm run server:pro",
+    "server:dev": "pm2 start bin/www.js --watch",
+    "server:pro": "pm2 start bin/www.js",
+    "build:dev": "webpack --watch --env.production --config config/webpack.config.js",
+    "build:pro": "webpack --env.production --config config/webpack.config.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.13.1",
-    "koa-router": "^10.0.0"
+    "concurrently": "^4.1.0",
+    "koa": "^2.6.2",
+    "koa-cookie": "^1.0.0",
+    "koa-cors": "0.0.16",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "log4js": "^3.0.6",
+    "moment": "^2.23.0",
+    "node-fetch": "^2.3.0",
+    "nunjucks": "^3.1.6",
+    "pm2": "^3.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1"
   }
 }

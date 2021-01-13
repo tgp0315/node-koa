@@ -1,0 +1,15 @@
+<!-- njk继承模板 -->
+{% extends "../_layout/home/home.html" %}
+{% block content %}
+  <!-- njk引入公共模块 -->
+  {% include "../_component/nav.html" %}
+  <h1>待办事项</h1>
+  <ul class="list">
+    <!-- 过滤器的调用 timeFormate即我们在中间件中给njk加的过滤器 -->
+    {% for item in todoList %}
+      <li>{{item.name}} ---> {{item.time | timeFormate}}</li>
+    {% endfor %}
+  </ul>
+  <div class="bg-img"> 背景图</div>
+  <img src="/images/ww.jpg"/>
+{% endblock %}
